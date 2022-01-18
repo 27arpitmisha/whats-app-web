@@ -11,7 +11,7 @@ export default function SideBar(id: any) {
         activeKey={activeKey}
         onSelect={(e: any) => setactiveKey(e)}
       >
-        <Nav variant="tabs" className="justift-content-center">
+        <Nav variant="tabs" className="justify-content-center">
           <Nav.Item>
             <Nav.Link eventKey="Conversations">Conversations</Nav.Link>
           </Nav.Item>
@@ -28,6 +28,9 @@ export default function SideBar(id: any) {
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>
+      <div className="p-2 border-top border-right small">
+        Your ID : <span className="text-muted">{id.id}</span>
+      </div>
     </div>
   );
 }
