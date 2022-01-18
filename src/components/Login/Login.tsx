@@ -38,6 +38,7 @@ export default function Login({ setID }: LoginProp) {
             type="text"
             placeholder="Enter your Id"
             onChange={onChangeHanle}
+            autoComplete="off"
             ref={idRef}
           />
         </Form.Group>

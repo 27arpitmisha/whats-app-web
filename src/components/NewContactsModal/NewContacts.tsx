@@ -1,10 +1,12 @@
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { AddContacts } from "../../redux/action-creators/ActionCreator";
 
 export default function NewContacts() {
   const [formValues, setformValues] = useState({ id: "", name: "" });
   const [errors, setErrors] = useState(false);
-
+  const dispatch = useDispatch();
   const onChangeHandle = (event: ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -23,9 +25,7 @@ export default function NewContacts() {
   };
   const onSubmit = () => {
     if (validated()) {
-      //   createContact(formValues.id, formValues.name);
-      console.log("validated");
-      console.log(formValues);
+        dispatch(AddContacts(formValues));
     }
   };
   return (
@@ -40,6 +40,7 @@ export default function NewContacts() {
               placeholder="Enter Id"
               name="id"
               onChange={onChangeHandle}
+              autoComplete="off"
             />
           </Form.Group>
           <Form.Group>
@@ -49,6 +50,7 @@ export default function NewContacts() {
               placeholder="Enter Name"
               name="name"
               onChange={onChangeHandle}
+              autoComplete="off"
             />
           </Form.Group>
           <br />
