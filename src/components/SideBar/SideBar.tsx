@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import { Nav, Tab } from "react-bootstrap";
+import { Button, Modal, Nav, Tab } from "react-bootstrap";
 import Contacts from "../Contacts/Contacts";
 import Conversations from "../Conversations/Conversations";
+import NewContacts from "../NewContactsModal/NewContacts";
+import NewConversation from "../NewConversationModal/NewConversation";
 
 export default function SideBar(id: any) {
   const [activeKey, setactiveKey] = useState("Conversations");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const changeVisibleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+  const buttonType =
+    activeKey === "Conversations" ? "New Conversations" : "New Contacts";
   return (
     <div style={{ width: "250px" }} className="d-flex flex-column">
       <Tab.Container
@@ -27,10 +36,14 @@ export default function SideBar(id: any) {
             <Contacts />
           </Tab.Pane>
         </Tab.Content>
+        <div className="p-2 border-top border-right small">
+          Your ID : <span className="text-muted">{id.id}</span>
+        </div>
+        <Button onClick={()=>{changeVisibleModal()}}className="rounded-0">{buttonType}</Button>
       </Tab.Container>
-      <div className="p-2 border-top border-right small">
-        Your ID : <span className="text-muted">{id.id}</span>
-      </div>
+      <Modal show={modalVisible} onHide={changeVisibleModal}>
+        {activeKey === "Conversations" ? <NewConversation /> : <NewContacts />}
+      </Modal>
     </div>
   );
 }
