@@ -7,7 +7,7 @@ export default function useLocalStorage(key : string) {
     const [id, setId] = useState(()=>{
         const savedID = localStorage.getItem(PREFIX_KEY);
 
-        return savedID ? JSON.parse(savedID) : '' 
+        return savedID ? JSON.parse(savedID) : '' ;
     });
 
     const setValue = (id : string) => {
