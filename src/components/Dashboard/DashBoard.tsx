@@ -1,9 +1,10 @@
 import React from 'react'
+import SideBar from '../SideBar/SideBar'
 
 export default function DashBoard(id :any) {
     return (
         <div>
-            <h3>Your ID : {id.id}</h3>
+            <SideBar id={id.id}/>
         </div>
     )
 }
