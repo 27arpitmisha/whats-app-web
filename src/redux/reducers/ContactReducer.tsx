@@ -21,3 +21,19 @@ export const contactReducer = (
       return state;
   }
 };
+
+export const findContactfromIds = (
+  state: typeof initContact,
+  selectedIds: string[]
+) => {
+  let listOfRecipients: Contact[] = [];
+
+  const listOfContact = state.filter((contact: Contact) => {
+    return selectedIds.map((id: string) => {
+      if (contact.id === id) {
+        listOfRecipients.push(contact);
+      }
+    });
+  });
+  return listOfRecipients;
+};

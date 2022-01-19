@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Contact from "../../Models/ContactsModel";
+import { addConversations } from "../../redux/action-creators/ActionCreator";
 import { RootState } from "../../redux/reducers";
+import { findContactfromIds } from "../../redux/reducers/ContactReducer";
 
 export default function NewConversation() {
   const [selectedContactIds, setselectedContactIds] = useState<string[]>([]);
   const contacts = useSelector((state: RootState) => state.contactReducer);
-
+  const dispatch = useDispatch();
   const onSubmitConversationsHandle = () => {
-    console.log(selectedContactIds);
+    const listOfContacts = findContactfromIds(contacts, selectedContactIds);
+    dispatch(addConversations(listOfContacts));
   };
   const handleChangeID = (contactId: string) => {
     setselectedContactIds((previoudId) => {

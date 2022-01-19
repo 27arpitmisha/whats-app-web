@@ -7,3 +7,10 @@ export const AddContacts = (contact: Contact) => {
     payload: contact,
   };
 };
+
+export const addConversations = (contact: Contact[]) => {
+    return {
+      type: ActionConstants.ADD_CONVERSATION,
+      payload: contact,
+    };
+  };
